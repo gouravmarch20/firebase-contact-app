@@ -27,15 +27,15 @@ const ViewContact = () => {
                 height="150"
                 width="150"
                 className="cardImg profile border-danger"
-                src={contact?.picture}
+                // src={contact?.picture}
               />
               <CardTitle className="text-primary mt-3">
-                <h1>{contact?.name}</h1>
+                {/* <h1>{contact?.name}</h1> */}
               </CardTitle>
               <CardSubtitle>
                 <h3>
                   <FaPhone className="mr-2" />
-                  {contact?.phoneNumber}
+                  {/* {contact?.phoneNumber} */}
                 </h3>
               </CardSubtitle>
               <a
@@ -44,7 +44,7 @@ const ViewContact = () => {
                 href={`mailto:{contact?.email}`}
               >
                 <FaEnvelope className="icon mr-2" />
-                {contact?.email}
+                {/* {contact?.email} */}
               </a>
 
               <a
@@ -53,7 +53,7 @@ const ViewContact = () => {
                 //TODO: add google maps
               >
                 <FaMapMarkerAlt className="icon mr-2" />
-                {contact?.address}
+                {/* {contact?.address} */}
               </a>
             </CardBody>
           </Card>

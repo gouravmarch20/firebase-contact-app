@@ -30,17 +30,9 @@ import ContactProvider from './context/providers/ContactProvider'
 //initlizeing firebase app with the firebase config which are in ./utils/firebaseConfig
 //TODO: initialize FIREBASE
 
-// first state to provide in react reducer
-const initialState = {
-  contacts: [],
-  contact: {},
-  contactToUpdate: null,
-  contactToUpdateKey: null,
-  isLoading: false
-}
+
 
 const App = () => {
-  // const [state, dispatch] = useReducer(reducer, initialState)
 
   // will get contacts from firebase and set it on state contacts array
   const getContacts = async () => {
@@ -55,20 +47,21 @@ const App = () => {
   return (
     <Router>
       {/* FIXME: Provider is not configured */}
-      <ContactProvider.Provider>
-        <ToastContainer />
-        <Header />
-        <Container>
+      <ContactProvider>
+      <h1>h4</h1>
+        {/* <ToastContainer /> */}
+        {/* <Header /> */}
+        {/* <Container>
           <Switch>
             <Route exact path='/contact/add' component={AddContact} />
             <Route exact path='/contact/view' component={ViewContact} />
             <Route exact path='/' component={Contacts} />
             <Route exact path='*' component={PageNotFound} />
           </Switch>
-        </Container>
+        </Container> */}
 
-        <Footer />
-      </ContactProvider.Provider>
+        {/* <Footer /> */}
+      </ContactProvider>
     </Router>
   )
 }
