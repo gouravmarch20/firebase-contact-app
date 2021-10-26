@@ -14,7 +14,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 
 // firebase stuffs
-//TODO: import firebase config and firebase database
+
+import firebase from 'firebase/compat/app'
 
 // components
 import AddContact from './pages/AddContact'
@@ -27,40 +28,49 @@ import PageNotFound from './pages/PageNotFound'
 // context api stuffs
 import ContactProvider from './context/providers/ContactProvider'
 
-//initlizeing firebase app with the firebase config which are in ./utils/firebaseConfig
 //TODO: initialize FIREBASE
 
-
-
 const App = () => {
+  const [state, dispatch] = useReducer(reducer, initialState)
 
-  // will get contacts from firebase and set it on state contacts array
   const getContacts = async () => {
-    // TODO: load existing data
+    dispatch({
+      type: SET_LOADING,
+      payload: true
+    })
+
+    const contactsRef = await firebase.database().ref('/contacts')
+    contactsRef.on('value', snapshot => {
+      dispatch({
+        type: SET_CONTACT,
+        payload: snapshot.val()
+      })
+      dispatch({
+        type: SET_LOADING,
+        payload: false
+      })
+    })
   }
 
-  // getting contact  when component did mount
   useEffect(() => {
-    //FIXME: call methods if needed
+    getContacts()
   }, [])
 
   return (
     <Router>
-      {/* FIXME: Provider is not configured */}
       <ContactProvider>
-      <h1>h4</h1>
-        {/* <ToastContainer /> */}
-        {/* <Header /> */}
-        {/* <Container>
+        <ToastContainer />
+        <Header />
+        <Container>
           <Switch>
             <Route exact path='/contact/add' component={AddContact} />
             <Route exact path='/contact/view' component={ViewContact} />
             <Route exact path='/' component={Contacts} />
             <Route exact path='*' component={PageNotFound} />
           </Switch>
-        </Container> */}
+        </Container>
 
-        {/* <Footer /> */}
+        <Footer />
       </ContactProvider>
     </Router>
   )

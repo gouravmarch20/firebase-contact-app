@@ -4,7 +4,6 @@ import ContactContext from '../contexts/ContactContext'
 import ContactReducer from '../reducers/ContactReducer'
 
 const ContactProvider = props => {
-  // const initialState =
   const [state, dispatch] = useReducer(ContactReducer, {
     contacts: [],
     contact: {},
